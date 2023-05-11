@@ -24,8 +24,10 @@
     "express-ejs": "^2.0.0",
     "express-ejs-layouts": "^2.5.1",
     "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
     "mysql2": "^3.3.0",
     "nodemon": "^2.0.22",
     "sequelize": "^6.31.1"
-  }
+  },
+  "keywords": []
 }
