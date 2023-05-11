@@ -7,7 +7,7 @@ const SongModel = sequelize.define("songs",{
         autoIncrement:true,
         primaryKey:true
     },
-    city:{
+     song_name:{
         type: DataTypes.STRING,
         allowNull:false
     },
