@@ -1,9 +1,15 @@
-const UserModel = require("../models/UserModel")
+const ConcertModel = require("../models/ConcertModel")
+const SongModel = require("../models/SongModel")
+const AlbumModel = require("../models/AlbumModel")
 
-exports.getAll = ()=>UserModel.findAll()
-/*
-exports.getOne = (idU)=>UserModel.findOne({where:{id:idU}})
-
-exports.create = (body)=>UserModel.create(body)
-exports.update = (idU,body)=>UserModel.update({username:body.username,password:body.password},{where:{id:idU}})
-exports.deleteOne = (idU)=>UserModel.destroy({where:{id:idU}})*/
+exports.findLastThreeSongs = ()=>AlbumModel.findAll({
+    include:{
+        model:SongModel,
+        order:[["createdAt","DESC"]],
+    limit:3
+    }
+})
+exports.findLastThreeConcerts = ()=>ConcertModel.findAll({
+    order:[["createdAt","DESC"]],
+    limit:3
+})
