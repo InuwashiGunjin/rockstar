@@ -20,4 +20,11 @@ AlbumModel.hasMany(SongModel,{
     foreignKey: 'id_albums',
     constraints: true
 })
-module.exports = AlbumModel
+
+exports.findLastThreeSongs = () => AlbumModel.findAll({
+        include:{
+            model:SongModel,
+            order:[["createdAt","DESC"]],
+        limit:3
+        }
+    })

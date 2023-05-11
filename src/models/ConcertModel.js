@@ -26,4 +26,9 @@ const ConcertModel = sequelize.define("concert",{
 })
 
 sequelize.sync().then(()=>console.log("Concert table created successfully")).catch(err=>console.log(err))
-module.exports = ConcertModel
+
+
+exports.findLastThreeConcerts = ()=> ConcertModel.findAll({
+        order:[["createdAt","DESC"]],
+        limit:3
+    })
