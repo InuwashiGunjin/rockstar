@@ -1,5 +1,5 @@
-<div class="row justify-content-center p-5">
-  <div class="col-sm-4 mb-3 mb-sm-0">
+<!--<div class="row justify-content-center p-5">
+ <div class="col-sm-4 mb-3 mb-sm-0">
     <div class="card text-white bg-dark">
       <div class="card-body">
         <h5 class="card-title text-center">Ime pesme</h5>
@@ -15,7 +15,7 @@
           allowfullscreen
         ></iframe>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      </div>
+    <!--  </div>
     </div>
   </div>
   <div class="col-sm-4">
@@ -34,7 +34,7 @@
           allowfullscreen
         ></iframe>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      </div>
+      <!--</div>
     </div>
   </div>
 
@@ -54,13 +54,50 @@
           allowfullscreen
         ></iframe>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      </div>
+      <!--</div>
     </div>
-  </div>
-</div>
+  </div>-->
+  <% if(data.lastSongs.length>0){
+    data.lastSongs.forEach(e=>{%>
+      <div class="row justify-content-center p-5">
+      <%
+      if(e.songs.length>0){
+        e.songs.forEach(e1=>{%>
+          <div class="col-sm-4">
+          <div class="card text-white bg-dark">
+            <div class="card-body">
+            <h5 class="card-title text-center"><%=e1.song_name %></h5>
+            <p class="card-text text-center"><%=e.album_name %></p>
+            <iframe
+              class="col-sm-12"
+              width="560"
+              height="315"
+              src="<%=e1.yt_link %>"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+          </div>
+        <%})
+      }else{%>
+            <h2 class="text-danger text-center p-5 bg-dark">Ne postoji ni jedna pesma sa albuma <%=e.album_name%></h2>
+      <%}%>
+        </div>
+    <%})
+  }else{%>
+            <h2 class="text-danger text-center p-5 bg-dark">Ne postoji ni jedan album</h2>
+      <%}%>
+    
 
 
-<% data.lastConcerts.forEach((e)=>{%>
+<!--</div>-->
+
+
+<!--<% data.lastConcerts.forEach((e)=>{%>
   <div style="color:blue; width: 100px; height: 100px;"></div>
-<%}) %>
+<%}) %>-->
 
