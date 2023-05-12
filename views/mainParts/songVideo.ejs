@@ -1,62 +1,68 @@
-<!--<div class="row justify-content-center p-5">
- <div class="col-sm-4 mb-3 mb-sm-0">
-    <div class="card text-white bg-dark">
-      <div class="card-body">
-        <h5 class="card-title text-center">Ime pesme</h5>
-        <p class="card-text text-center">Ime albuma</p>
-        <iframe
-          class="col-sm-12"
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/8x1svKFbdU0"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-    <!--  </div>
+<!--<div class="container">
+  <div class="row justify-content-center p-5">
+    <div class="col-sm-4 mb-3 mb-sm-0">
+      <div class="card text-white bg-dark">
+        <div class="card-body">
+          <h5 class="card-title text-center">Ime pesme</h5>
+          <p class="card-text text-center">Ime albuma</p>
+          <iframe
+            class="col-sm-12"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/8x1svKFbdU0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> 
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card text-white bg-dark">
-      <div class="card-body">
-        <h5 class="card-title text-center">Ime pesme</h5>
-        <p class="card-text text-center">Ime albuma</p>
-        <iframe
-          class="col-sm-12"
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/8x1svKFbdU0"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      <!--</div>
+    <div class="col-sm-4">
+      <div class="card text-white bg-dark">
+        <div class="card-body">
+          <h5 class="card-title text-center">Ime pesme</h5>
+          <p class="card-text text-center">Ime albuma</p>
+          <iframe
+            class="col-sm-12"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/8x1svKFbdU0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="col-sm-4">
-    <div class="card text-white bg-dark">
-      <div class="card-body">
-        <h5 class="card-title text-center">Ime pesme</h5>
-        <p class="card-text text-center">Ime albuma</p>
-        <iframe
-          class="col-sm-12"
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/8x1svKFbdU0"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      <!--</div>
+    <div class="col-sm-4">
+      <div class="card text-white bg-dark">
+        <div class="card-body">
+          <h5 class="card-title text-center">Ime pesme</h5>
+          <p class="card-text text-center">Ime albuma</p>
+          <iframe
+            class="col-sm-12"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/8x1svKFbdU0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
     </div>
-  </div>-->
+  </div>
+</div>-->
+
+<div class="container">
+
   <% if(data.lastSongs.length>0){
     data.lastSongs.forEach(e=>{%>
       <div class="row justify-content-center p-5">
@@ -84,7 +90,7 @@
           </div>
         <%})
       }else{%>
-            <h2 class="text-danger text-center p-5 bg-dark">Ne postoji ni jedna pesma sa albuma <%=e.album_name%></h2>
+            <!--<h2 class="text-danger text-center p-5 bg-dark">Ne postoji ni jedna pesma sa albuma <%=e.album_name%></h2>-->
       <%}%>
         </div>
     <%})
@@ -93,11 +99,4 @@
       <%}%>
     
 
-
-<!--</div>-->
-
-
-<!--<% data.lastConcerts.forEach((e)=>{%>
-  <div style="color:blue; width: 100px; height: 100px;"></div>
-<%}) %>-->
-
+</div>

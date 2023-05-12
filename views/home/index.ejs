@@ -1,2 +1,10 @@
 <!-- <h1>Pocetna strana index.ejs</h1> -->
-<%-include('../mainParts/blogVideo')%> <%-include('../mainParts/songVideo')%>
+
+<header><%- include('../common/header') %></header>
+
+<!-- <div class="container"> -->
+  <%-include('../mainParts/blogVideo')%> <%-include('../mainParts/x')%>
+  <%-include('../mainParts/slider.ejs')%> <%-include('../mainParts/songVideo')%>
+<!-- </div> -->
+
+<footer><%- include('../common/footer') %></footer>
