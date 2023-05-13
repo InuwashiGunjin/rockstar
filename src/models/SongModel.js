@@ -18,4 +18,5 @@ const SongModel = sequelize.define("songs",{
 })
 
 sequelize.sync().then(()=>console.log("Song table created successfully")).catch(err=>console.log(err))
+
 module.exports = SongModel
