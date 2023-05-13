@@ -1,6 +1,6 @@
 const sequelize = require("../config/Database")
 const DataTypes = require("sequelize")
-
+const {Op} = require("sequelize")
 const ConcertModel = sequelize.define("concert",{
     id_concert:{
         type:DataTypes.INTEGER,
@@ -32,3 +32,6 @@ exports.findLastThreeConcerts = ()=> ConcertModel.findAll({
         order:[["createdAt","DESC"]],
         limit:3
     })
+exports.findFutureConcerts =()=>ConcertModel.findAll({
+    where:{"start_date":{[Op.gte]:new Date()}}
+})

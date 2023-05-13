@@ -27,4 +27,14 @@ exports.findLastThreeSongs = () => AlbumModel.findAll({
             order:[["createdAt","DESC"]],
         limit:3
         }
-    })
+})
+
+exports.findAllSongsOnTheAlbum = () => AlbumModel.findAll({
+    include:{
+        model:SongModel,
+        order:[["createdAt","DESC"]],
+    limit:3
+    }
+})
+
+exports.findLastThreeSongsAtNewAlbum = ()=>sequelize.query("SELECT * FROM albums a INNER JOIN songs s ON a.id_albums=s.id_albums WHERE a.createdAt = (SELECT MAX(createdAt) FROM albums) ORDER BY s.createdAt DESC LIMIT 3")

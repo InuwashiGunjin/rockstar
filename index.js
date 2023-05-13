@@ -2,6 +2,8 @@ const express = require("express")
 const HomeRoutes = require("./src/routes/HomeRoutes")
 const UserRoutes = require("./src/routes/UserRoutes")
 const AuthRoutes = require("./src/routes/AuthRoutes")
+const DiscographyRoutes = require("./src/routes/DiscographyRoutes")
+const ConcertRoutes = require("./src/routes/ConcertsRoutes")
 const app = express()
 const PORT = 3000
 
@@ -17,6 +19,8 @@ app.set("view engine","ejs")
 app.use("/",HomeRoutes)
 app.use("/auth",AuthRoutes)
 app.use("/user",UserRoutes)
+app.use("/",DiscographyRoutes)
+app.use("/",ConcertRoutes)
 
 
 // PAGE NOTFOUND
