@@ -22,7 +22,7 @@
               <td><%= e.city%></td>
               <td><%= e.start_date.toLocaleDateString().slice(0,-1)%>, <%=e.start_date.toLocaleTimeString().slice(0,-3)%></td>
               <td><%= e.description%></td>
-              <td><%= e.description%></td>
+              <td><%= e.is_active?'aktivan':'neaktivan'%></td>
             </tr>
           <%})%>
         </tbody>
