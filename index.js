@@ -1,4 +1,5 @@
 const express = require("express")
+const bodyParser = require('body-parser')
 const HomeRoutes = require("./src/routes/HomeRoutes")
 const UserRoutes = require("./src/routes/UserRoutes")
 const AuthRoutes = require("./src/routes/AuthRoutes")
@@ -10,26 +11,63 @@ const PORT = 3000
 
 app.use(express.json())
 
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json())
+
 app.use(require("express-ejs-layouts"))
 app.use(express.static("public"))
 app.set("view engine","ejs")
 
+var sessions = {};
+
 const authorized =(req,res,next)=>{
-    if(sessionUser){
-        res.json(sessionUser)
-        next()
-    }else{
-        res.send("niste autorizovani")
+
+    const sessionId = req.headers.cookie.split('1')[1];
+    const user = sessions[sessionId];
+    if(req.path=="/admin")
+    {
+        if(typeof(user)!='undefined')
+        {
+            if(typeof(user.role)!='undefined') 
+                    {
+                        next();
+                    }
+                    else
+                    {
+                        res.redirect('/auth/login');
+                    }
+        }
+        res.redirect('/auth/login');
     }
+    else
+    {
+        switch(req.path)
+        {
+            case "/buyCard":
+                {
+                    if(typeof(user)!='undefined')
+                    {
+                        next();
+                    }
+                    else
+                    {
+                        res.redirect('/auth/login');
+                    }
+                }
+            default:
+                next();
+        }
+    }
+    
 }
 
 // ROUTES
 
-app.use("/",HomeRoutes)
-app.use("/auth",AuthRoutes)
+app.use("/",authorized,HomeRoutes)
+app.use("/auth",authorized,AuthRoutes)
 app.use("/user",authorized,UserRoutes)
-app.use("/",DiscographyRoutes)
-app.use("/",ConcertRoutes)
+app.use("/",authorized,DiscographyRoutes)
+app.use("/",authorized,ConcertRoutes)
 
 
 // PAGE NOTFOUND
@@ -38,3 +76,5 @@ app.use((req,res)=>{
 })
 
 app.listen(PORT,()=>console.log(`Listen app port ${PORT}`))
+
+module.exports = sessions;

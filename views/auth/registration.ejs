@@ -1,0 +1,40 @@
+    <form action="/auth/registrationProccess" method="post" class="col-md-8 col-lg-3 p-2 m-auto">
+        <div class="m-3">
+            <input class="form-control" name="firstname" placeholder="Unesite ime" <%if(typeof modelInp!='undefined'){%> value="<%= modelInp.firstname %>" <%}%>>
+            <%if(typeof firstNameErr!='undefined'){%>
+                <div class="h6 text-danger text-center"><%=firstNameErr%></div>
+            <%}%>
+        </div>
+        <div class="m-3">
+            <input class="form-control" name="lastname" placeholder="Unesite prezime"  <%if(typeof modelInp!='undefined'){%> value="<%= modelInp.firstname %>" <%}%>>
+            <%if(typeof lastNameErr!='undefined'){%>
+                <div class="h6 text-danger text-center"><%=lastNameErr%></div>
+            <%}%>
+        </div>
+        <div class="m-3">
+            <input class="form-control" name="email" placeholder="Unesite email" <%if(typeof modelInp!='undefined'){%> value="<%= modelInp.email %>" <%}%>>
+            <%if(typeof emailErr!='undefined'){%>
+                <div class="h6 text-danger text-center"><%=emailErr%></div>
+            <%}%>
+        </div>
+        <div class="m-3">
+            <input class="form-control" name="username" placeholder="Unesite korisnicko ime" <%if(typeof modelInp!='undefined'){%> value="<%= modelInp.username %>" <%}%>>
+            <%if(typeof usernameErr!='undefined'){%>
+                <div class="h6 text-danger text-center"><%=usernameErr%></div>
+            <%}%>
+            <%if(typeof msg!='undefined'){%>
+                <div class="h6 text-danger text-center"><%=msg%></div>
+            <%}%>
+        </div>
+        <div class="m-3">
+            <input class="form-control" type="password" name="password" placeholder="Unesite lozinku" <%if(typeof modelInp!='undefined'){%> value="<%= modelInp.password %>" <%}%>>
+            <%if(typeof passwordErr!='undefined'){%>
+                <div class="h6 text-danger text-center"><%=passwordErr%></div>
+            <%}%>
+        </div>
+        <div class="m-3">
+            <button type="submit" class="btn btn-primary">Registracija</button>
+            <br/>
+            <a href="/auth/login" class="nav nav-link">Imate nalog</a><a href="/" class="nav nav-link">Pocetna</a>
+        </div>
+    </form>
