@@ -22,7 +22,7 @@ var sessions = {};
 
 const authorized =(req,res,next)=>{
 
-    const sessionId = req.headers.cookie.split('1')[1];
+    const sessionId = req.headers.cookie//.split('1')[1];
     const user = sessions[sessionId];
     if(req.path=="/admin")
     {
