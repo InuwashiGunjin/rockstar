@@ -34,8 +34,10 @@ const UserModel = sequelize.define("users",{
     },
 })
 
+
+
 sequelize.sync().then(()=>console.log("User table created successfully")).catch(err=>console.log(err))
 
-
-exports.createUser =(body)=>UserModel.create(body)
-exports.findUserUsername =(body)=>UserModel.findOne({where:{username:body.username}})
+module.exports = UserModel
+module.exports.createUser =(body)=>UserModel.create(body)
+module.exports.findUserUsername =(body)=>UserModel.findOne({where:{username:body.username}})

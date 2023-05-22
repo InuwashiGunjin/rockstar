@@ -1,5 +1,6 @@
 const express = require("express")
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const HomeRoutes = require("./src/routes/HomeRoutes")
 const UserRoutes = require("./src/routes/UserRoutes")
 const AuthRoutes = require("./src/routes/AuthRoutes")
@@ -13,6 +14,7 @@ app.use(express.json())
 
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
+app.use(cookieParser());
 
 app.use(require("express-ejs-layouts"))
 app.use(express.static("public"))
@@ -20,10 +22,16 @@ app.set("view engine","ejs")
 
 var sessions = {};
 
+const addSession = (sessionId,user) => {
+    sessions[sessionId]=user;
+}
+
 const authorized =(req,res,next)=>{
 
-    const sessionId = req.headers.cookie.split('1')[1];
-    const user = sessions[sessionId];
+    var sessionId;
+    if(typeof(req.cookies)!='undefined')
+        sessionId = req.cookies["session"];
+    var user = sessions[sessionId];
     if(req.path=="/admin")
     {
         if(typeof(user)!='undefined')
@@ -78,4 +86,4 @@ app.use((req,res)=>{
 
 app.listen(PORT,()=>console.log(`Listen app port ${PORT}`))
 
-module.exports = sessions;
+module.exports.addSession = addSession;

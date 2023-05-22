@@ -1,7 +1,17 @@
 const ConcertModel = require("../models/ConcertModel")
 const AlbumModel = require("../models/AlbumModel")
 const SongsModel = require("../models/SongModel")
-exports.findAllAlbum  = ()=>AlbumModel.findAllAlbum()
-exports.createConcert = (body)=>ConcertModel.create(body)
-exports.createAlbum = (body)=>AlbumModel.create(body)
-exports.createSong = (body)=>SongsModel.create(body)
+const CardModel = require("../models/CardModel")
+
+module.exports.findAllAlbum  = ()=>AlbumModel.findAllAlbum()
+module.exports.createConcert = async (body)=>
+{
+    return ConcertModel.create(body);
+}
+module.exports.createAlbum = (body)=>AlbumModel.create(body)
+module.exports.createSong = (body)=>SongsModel.create(body)
+module.exports.findAllConcerts = ()=>ConcertModel.findAllConcerts();
+module.exports.createCard = (body) => {
+    console.log("OK");
+    CardModel.create(body);
+}

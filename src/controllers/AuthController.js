@@ -1,7 +1,7 @@
 const { createUser, findUserUsername } = require("../services/AuthService")
 const crypto = require("crypto")
 const uuidv4 = require('uuid').v4
-var {sessions} = require('../../index');
+const index = require('../../index.js');
 
 //VIEW
 exports.registration=(req,res)=>{
@@ -35,16 +35,15 @@ exports.loginProccess=async(req,res)=>{
     let verificationUser = crypto.verify("sha256",Buffer.from(user!==null?user.password:" "),publicKey, signature)
     if(verificationUser){
         const sessionId = uuidv4();
-        res.set('Set-Cookie',`session=${sessionId}`);
-        if(typeof(sessions)=='undefined')
-            sessions={};
-        sessions[sessionId] = user;
+        res.cookie("session",sessionId);
+        index.addSession(sessionId,user);
         res.redirect('/');
     }
     else
-    res.render("auth/registration",{layout:"layouts/blank",msg:"Korisnicko ime je zauzeto"});
+    res.render("auth/login",{layout:"layouts/blank",msg:"Neispravni podaci"});
 }
 exports.logOut = (req,res)=>{
-    res.json(sessions)    
-    sessions[sessionId]=null
+    res.clearCookie();
+    sessions[sessionId]=null;
+    res.redirect('/');
 }

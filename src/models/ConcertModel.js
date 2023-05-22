@@ -1,5 +1,6 @@
 const sequelize = require("../config/Database")
 const DataTypes = require("sequelize")
+const CardModel = require("./CardModel");
 
 const ConcertModel = sequelize.define("concert",{
     id_concert:{
@@ -30,18 +31,23 @@ const ConcertModel = sequelize.define("concert",{
     }
 })
 
+ConcertModel.hasMany(CardModel,{
+    as:'cards',
+    foreignKey: 'id_concert'
+})
+
 sequelize.sync().then(()=>console.log("Concert table created successfully")).catch(err=>console.log(err))
 
-exports.findAllConcerts = () => ConcertModel.findAll()
+module.exports.findAllConcerts = () => ConcertModel.findAll()
 
 
-exports.findLastThreeConcerts = ()=> ConcertModel.findAll({
+module.exports.findLastThreeConcerts = ()=> ConcertModel.findAll({
     order:[["createdAt","DESC"]],
     limit:3
 })
 
-exports.findFutureConcerts =()=>ConcertModel.findAll({
+module.exports.findFutureConcerts =()=>ConcertModel.findAll({
     where:{"start_date":{[Op.gte]:new Date()}}
 })
 
-exports.create = (body)=>ConcertModel.create(body)
+module.exports.create = (body)=>ConcertModel.create(body)

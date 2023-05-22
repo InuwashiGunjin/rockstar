@@ -20,4 +20,4 @@ module.exports = SongModel
 
 sequelize.sync().then(()=>console.log("Song table created successfully")).catch(err=>console.log(err))
 
-//exports.create=(body)=>SongModel.create(body)
+exports.create=(body)=>SongModel.create(body)
