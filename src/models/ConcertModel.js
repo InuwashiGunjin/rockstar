@@ -36,10 +36,12 @@ exports.findAllConcerts = () => ConcertModel.findAll()
 
 
 exports.findLastThreeConcerts = ()=> ConcertModel.findAll({
-        order:[["createdAt","DESC"]],
-        limit:3
-    })
+    order:[["createdAt","DESC"]],
+    limit:3
+})
 
-    exports.findFutureConcerts =()=>ConcertModel.findAll({
-        where:{"start_date":{[Op.gte]:new Date()}}
-    })
+exports.findFutureConcerts =()=>ConcertModel.findAll({
+    where:{"start_date":{[Op.gte]:new Date()}}
+})
+
+exports.create = (body)=>ConcertModel.create(body)

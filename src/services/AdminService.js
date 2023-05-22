@@ -1,0 +1,7 @@
+const ConcertModel = require("../models/ConcertModel")
+const AlbumModel = require("../models/AlbumModel")
+const SongsModel = require("../models/SongModel")
+exports.findAllAlbum  = ()=>AlbumModel.findAllAlbum()
+exports.createConcert = (body)=>ConcertModel.create(body)
+exports.createAlbum = (body)=>AlbumModel.create(body)
+exports.createSong = (body)=>SongsModel.create(body)

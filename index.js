@@ -5,7 +5,7 @@ const UserRoutes = require("./src/routes/UserRoutes")
 const AuthRoutes = require("./src/routes/AuthRoutes")
 const DiscographyRoutes = require("./src/routes/DiscographyRoutes")
 const ConcertRoutes = require("./src/routes/ConcertsRoutes")
-const { sessionUser } = require("./src/controllers/AuthController")
+const AdminRoutes = require("./src/routes/AdminRoutes")
 const app = express()
 const PORT = 3000
 
@@ -22,7 +22,7 @@ var sessions = {};
 
 const authorized =(req,res,next)=>{
 
-    const sessionId = req.headers.cookie//.split('1')[1];
+    const sessionId = req.headers.cookie.split('1')[1];
     const user = sessions[sessionId];
     if(req.path=="/admin")
     {
@@ -68,6 +68,7 @@ app.use("/auth",authorized,AuthRoutes)
 app.use("/user",authorized,UserRoutes)
 app.use("/",authorized,DiscographyRoutes)
 app.use("/",authorized,ConcertRoutes)
+app.use("/admin",authorized,AdminRoutes)
 
 
 // PAGE NOTFOUND
