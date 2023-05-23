@@ -5,10 +5,10 @@ const index = require('../../index.js');
 
 //VIEW
 exports.registration=(req,res)=>{
-    res.render("auth/registration",{layout:"layouts/blank"})
+    res.render("auth/registration",{layout:"layouts/main"})
 }
 exports.login=(req,res)=>{
-    res.render("auth/login",{layout:"layouts/blank"})
+    res.render("auth/login",{layout:"layouts/main"})
 }
 
 
@@ -19,10 +19,10 @@ exports.registrationProccess=async(req,res)=>{
         var s ="abcderg"
         req.body.password = crypto.createHmac("sha256",s).update(req.body.password).digest("hex")
         //let user = {"username":req.body.username,"password":req.body.password,"firstname":req.body.firstName,"lastname":req.body.lastName,"email":req.body.email}
-        createUser(req.body).then(()=>res.redirect('/')).catch(err=>res.render("auth/registration",{layout:"layouts/blank",err:"Korisnicko ime je zauzeto"}));      
+        createUser(req.body).then(()=>res.redirect('/')).catch(err=>res.render("auth/registration",{layout:"layouts/main",err:"Korisnicko ime je zauzeto"}));      
     }
     else
-        res.render("auth/registration",{layout:"layouts/blank",msg:"Korisnicko ime je zauzeto"});
+        res.render("auth/registration",{layout:"layouts/main",msg:"Korisnicko ime je zauzeto"});
 }
 exports.loginProccess=async(req,res)=>{
     var user = await findUserUsername(req.body)
@@ -40,7 +40,7 @@ exports.loginProccess=async(req,res)=>{
         res.redirect('/');
     }
     else
-    res.render("auth/login",{layout:"layouts/blank",msg:"Neispravni podaci"});
+    res.render("auth/login",{layout:"layouts/main",msg:"Neispravni podaci"});
 }
 exports.logOut = (req,res)=>{
     res.clearCookie();

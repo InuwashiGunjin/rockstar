@@ -12,6 +12,7 @@
             <th scope="col">Datum</th>
             <th scope="col">Opis</th>
             <th scope="col">Status</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
               <td><%= e.start_date.toLocaleDateString().slice(0,-1)%>, <%=e.start_date.toLocaleTimeString().slice(0,-3)%></td>
               <td><%= e.description%></td>
               <td><%= e.is_active?'aktivan':'neaktivan'%></td>
+              <td><a href="#"><button>Rezervisi</button></a></td>
             </tr>
           <%})%>
         </tbody>
