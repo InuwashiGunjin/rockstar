@@ -40,7 +40,7 @@ exports.loginProccess=async(req,res)=>{
         res.redirect('/');
     }
     else
-    res.render("auth/login",{layout:"layouts/main",msg:"Neispravni podaci"});
+    res.render("auth/login",{layout:"layouts/main",data:"Neispravni podaci"});
 }
 exports.logOut = (req,res)=>{
     res.clearCookie();

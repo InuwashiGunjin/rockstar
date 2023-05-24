@@ -12,6 +12,5 @@ module.exports.createAlbum = (body)=>AlbumModel.create(body)
 module.exports.createSong = (body)=>SongsModel.create(body)
 module.exports.findAllConcerts = ()=>ConcertModel.findAllConcerts();
 module.exports.createCard = (body) => {
-    console.log("OK");
     CardModel.create(body);
 }

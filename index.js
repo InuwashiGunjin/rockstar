@@ -8,7 +8,7 @@ const DiscographyRoutes = require("./src/routes/DiscographyRoutes")
 const ConcertRoutes = require("./src/routes/ConcertsRoutes")
 const AdminRoutes = require("./src/routes/AdminRoutes")
 const app = express()
-const PORT = 3000
+const PORT = 80
 
 app.use(express.json())
 
@@ -21,9 +21,14 @@ app.use(express.static("public"))
 app.set("view engine","ejs")
 
 var sessions = {};
+var user;
 
 const addSession = (sessionId,user) => {
     sessions[sessionId]=user;
+}
+
+const getUser = (sessionId)=>{
+    return sessions[sessionId];
 }
 
 const authorized =(req,res,next)=>{
@@ -31,21 +36,22 @@ const authorized =(req,res,next)=>{
     var sessionId;
     if(typeof(req.cookies)!='undefined')
         sessionId = req.cookies["session"];
-    var user = sessions[sessionId];
+    user = sessions[sessionId];
     if(req.path=="/admin")
     {
         if(typeof(user)!='undefined')
         {
-            if(typeof(user.role)!='undefined') 
-                    {
-                        next();
-                    }
-                    else
-                    {
-                        res.redirect('/auth/login');
-                    }
+            if(user.role=='admin') 
+            {
+                next();
+            }
+            else
+            {
+                res.redirect('/auth/login');
+            }
         }
-        res.redirect('/auth/login');
+        else
+            res.redirect('/auth/login');
     }
     else
     {
@@ -87,3 +93,5 @@ app.use((req,res)=>{
 app.listen(PORT,()=>console.log(`Listen app port ${PORT}`))
 
 module.exports.addSession = addSession;
+
+module.exports.getUser = getUser;

@@ -8,6 +8,7 @@ exports.findAllConcerts = async (req,res) =>
 {
     var concerts = await adminService.findAllConcerts();
     res.json(concerts);
+    //res.render("concert/main",{layout:"layouts/main",data:concerts});
 }
 
 exports.createAlbum = async(req,res)=>{

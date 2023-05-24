@@ -32,14 +32,27 @@ const ConcertModel = sequelize.define("concert",{
 })
 
 ConcertModel.hasMany(CardModel,{
-    as:'cards',
     foreignKey: 'id_concert'
 })
 
 sequelize.sync().then(()=>console.log("Concert table created successfully")).catch(err=>console.log(err))
 
-module.exports.findAllConcerts = () => ConcertModel.findAll()
+module.exports.findAllConcerts = () => ConcertModel.findAll();
 
+module.exports.findOneNonReservedCard = (idConcert) => ConcertModel.findAll(
+    {
+        include:
+            {
+                model:CardModel,
+                where:{
+                    is_reserved:false,
+                    is_sold:false
+                },
+                limit:1
+            },
+        where:{id_concert:idConcert}
+    }
+    );
 
 module.exports.findLastThreeConcerts = ()=> ConcertModel.findAll({
     order:[["createdAt","DESC"]],
