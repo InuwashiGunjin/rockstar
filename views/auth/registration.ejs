@@ -21,8 +21,8 @@
             <div class="form-group">
                 <label for="exampleInputPassword1" class="p-1">Korisnicko ime:</label>
                 <input type="text" class="form-control p-1" name="username" placeholder="Unesite korisnicko ime.." required>
-                    <%if(typeof msg!='undefined'){%>
-                    <div class="h6 text-danger text-center"><%=msg%></div>
+                    <%if(typeof data.msg!='undefined'){%>
+                    <div class="h6 text-danger text-center"><%=data.msg%></div>
                     <%}%>
             </div>
             <br>

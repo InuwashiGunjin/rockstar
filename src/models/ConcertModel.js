@@ -53,7 +53,33 @@ module.exports.findOneNonReservedCard = (idConcert) => ConcertModel.findAll(
         where:{id_concert:idConcert}
     }
     );
+ module.exports.findOneNonBuyCard = (idConcert) => ConcertModel.findAll(
+    {
+        include:
+            {
+                model:CardModel,
+                where:{
+                    is_reserved:false,
+                    is_sold:false
+                },
+                limit:1
+            },
+            where:{id_concert:idConcert}
+    }
+ );
 
+ module.exports.findReservedCard = (data) => ConcertModel.findAll(
+    {
+        include:
+            {
+                model:CardModel,
+                where:{
+                    id_card:data.idCard,
+                    id_user_reserved:data.idUser
+                }
+            }
+    }
+ );
 module.exports.findLastThreeConcerts = ()=> ConcertModel.findAll({
     order:[["createdAt","DESC"]],
     limit:3

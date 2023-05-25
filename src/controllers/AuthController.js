@@ -5,10 +5,12 @@ const index = require('../../index.js');
 
 //VIEW
 exports.registration=(req,res)=>{
-    res.render("auth/registration",{layout:"layouts/main"})
+    var user = index.getUser(req.cookies["session"])
+    res.render("auth/registration",{layout:"layouts/main",data:{"user":user}})
 }
 exports.login=(req,res)=>{
-    res.render("auth/login",{layout:"layouts/main"})
+    var user = index.getUser(req.cookies["session"])
+    res.render("auth/login",{layout:"layouts/main",data:{"user":user}})
 }
 
 
@@ -22,7 +24,7 @@ exports.registrationProccess=async(req,res)=>{
         createUser(req.body).then(()=>res.redirect('/')).catch(err=>res.render("auth/registration",{layout:"layouts/main",err:"Korisnicko ime je zauzeto"}));      
     }
     else
-        res.render("auth/registration",{layout:"layouts/main",msg:"Korisnicko ime je zauzeto"});
+        res.render("auth/registration",{layout:"layouts/main",data:{msg:"Korisnicko ime je zauzeto","user":user}});
 }
 exports.loginProccess=async(req,res)=>{
     var user = await findUserUsername(req.body)
@@ -40,7 +42,7 @@ exports.loginProccess=async(req,res)=>{
         res.redirect('/');
     }
     else
-    res.render("auth/login",{layout:"layouts/main",data:"Neispravni podaci"});
+    res.render("auth/login",{layout:"layouts/main",data:{"msg":"Neispravni podaci","user":user}});
 }
 exports.logOut = (req,res)=>{
     res.clearCookie();

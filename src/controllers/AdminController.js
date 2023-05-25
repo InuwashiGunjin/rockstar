@@ -1,7 +1,8 @@
 const adminService = require("../services/AdminService")
-
+const indexFile = require("../../index")
 exports.createConcert = (req,res)=>{
-    res.render("",{layout:"layouts/admin"})
+    var user = indexFile.getUser(req.cookies["session"])
+    res.render("",{layout:"layouts/admin",data:{"user":user}})
 }
 
 exports.findAllConcerts = async (req,res) =>
@@ -12,12 +13,15 @@ exports.findAllConcerts = async (req,res) =>
 }
 
 exports.createAlbum = async(req,res)=>{
-    res.render("",{layout:"layouts/admin"})
+    var user = indexFile.getUser(req.cookies["session"])
+    res.render("",{layout:"layouts/admin",user:user})
 }
 
 exports.createSong = async(req,res)=>{
+    
+    var user = indexFile.getUser(req.cookies["session"])
     var album = await adminService.findAllAlbum()
-    res.render("",{layout:"layouts/admin",data:album})
+    res.render("",{layout:"layouts/admin",data:{"data":album,"user":user}})
 }
 
 

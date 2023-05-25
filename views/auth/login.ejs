@@ -21,8 +21,8 @@
 
 <div class="d-flex justify-content-center align-items-center" style="height: 72vh; background-image: url('https://townsquare.media/site/295/files/2022/04/attachment-RHCP-collage-3.jpg'); color: white;">
     <form action="/auth/loginProccess" method="post" class="col-md-8 col-lg-4 p-5" style="background-color:rgba(52, 52, 52, 0.898);" >
-        <%if(typeof data!='undefined'){%>
-            <div class="h6 text-danger text-center"><%=data%></div>
+        <%if(typeof data.msg!='undefined'){%>
+            <div class="h6 text-danger text-center"><%=data.msg%></div>
         <%}%>
         <div class="form-group">
           <label for="exampleInputEmail1" class="p-1">Korisničko ime:</label>
