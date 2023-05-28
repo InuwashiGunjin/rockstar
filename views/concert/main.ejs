@@ -16,7 +16,9 @@
             <th scope="col">Datum</th>
             <th scope="col">Opis</th>
             <th scope="col">Status</th>
+            <%if(data.user==null || data.user.role=='user'){%>
             <th scope="col"></th> 
+            <%}%>
           </tr>
         </thead>  
         <tbody>  
