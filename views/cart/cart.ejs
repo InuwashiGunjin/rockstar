@@ -1,0 +1,40 @@
+<div style="background-image: url('https://wallpaper.dog/large/5438587.jpg'); background-size: cover; color: black">
+    <div class="p-5 m-5">  
+      <% if(data.data.length>0){%>
+        <h3 class="text-center p-4" style="background-color:rgba(52, 52, 52, 0.839); color: rgb(225, 225, 225); border: 2px solid rgb(212, 212, 212);">Rezervisane i kupljene karte:</h3>
+        <table class="table" style="background-color:rgba(52, 52, 52, 0.839); color: rgb(225, 225, 225); border: 2px solid rgb(212, 212, 212); font-size: large;">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Datum</th>
+            <th scope="col">Status</th>
+            <th scope="col">Id koncerta</th>
+            <th scope="col"></th> 
+          </tr>
+        </thead>  
+        <tbody>  
+          <%data.data.forEach((e,i)=>{%>
+          <tr>
+            <th scope="row"><%= i+1%></th>
+            <td><%= e.createdAt.toLocaleDateString()%></td>
+            <td><%= e.is_sold?'Kupljena':'Rezervisana'%></td>
+            <td><%= e.id_concert%></td>  
+            
+          <%if(data.user==null || data.user.role=='user'){%>
+            <td class="d-flex justify-content-evenly align-items-center">
+                <%if(e.is_sold==0){%>
+              <a href="/concerts/buyReservedCard/<%=e.id_card%>" class="btn btn-danger" style="width: 90px;">Kupi</a>
+              <%}else{%>
+                <a href="/concerts/buyReservedCard/<%=e.id_card%>" class="btn btn-danger disabled" style="width: 90px;">Kupljena</a>
+                <%}%>
+
+            </td>
+            <%}})%>
+            
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

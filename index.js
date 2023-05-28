@@ -31,6 +31,12 @@ const getUser = (sessionId)=>{
     return sessions[sessionId];
 }
 
+const clearUser = (sessionId)=>{
+
+     return sessions[sessionId]=null;
+    
+    }
+
 const authorized =(req,res,next)=>{
 
     var sessionId;
@@ -95,3 +101,4 @@ app.listen(PORT,()=>console.log(`Listen app port ${PORT}`))
 module.exports.addSession = addSession;
 
 module.exports.getUser = getUser;
+module.exports.clearUser= clearUser;

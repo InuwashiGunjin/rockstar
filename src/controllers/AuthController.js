@@ -26,6 +26,7 @@ exports.registrationProccess=async(req,res)=>{
     else
         res.render("auth/registration",{layout:"layouts/main",data:{msg:"Korisnicko ime je zauzeto","user":user}});
 }
+var ss
 exports.loginProccess=async(req,res)=>{
     var user = await findUserUsername(req.body)
     
@@ -38,6 +39,7 @@ exports.loginProccess=async(req,res)=>{
     if(verificationUser){
         const sessionId = uuidv4();
         res.cookie("session",sessionId);
+        ss=sessionId;
         index.addSession(sessionId,user);
         res.redirect('/');
     }
@@ -46,6 +48,6 @@ exports.loginProccess=async(req,res)=>{
 }
 exports.logOut = (req,res)=>{
     res.clearCookie();
-    sessions[sessionId]=null;
+    index.clearUser(ss);
     res.redirect('/');
 }

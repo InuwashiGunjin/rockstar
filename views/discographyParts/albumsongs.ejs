@@ -1,4 +1,11 @@
-<div class="container">
+
+<!--<div class="container">
+  <%
+      if(data.user){
+      if(data.user.role=='admin'){%>
+        <a class="btn btn-danger" href="admin/createalbum">Dodaj album</a>
+        <a class="btn btn-danger" href="admin/createsong">Dodaj pesmu</a>
+        <%}}%>
   <% if(data.data.length>0){ data.data.forEach(e=>{%>
   <div class="row">
     <h2><%=e.album_name%></h2>
@@ -18,7 +25,6 @@
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
-            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
           </div>
         </div>
       </div>
@@ -31,5 +37,107 @@
   </div>
   <%})} else{%>
   <h2 class="text-danger text-center bg-dark p-5">Ne postoji ni jedan album</h2>
+  <%} %>
+</div>-->
+
+
+<!--accordion verzija-ne radi otvaranje i zatvaranje
+<div class="container">
+  <%
+      if(data.user){
+      if(data.user.role=='admin'){%>
+        <a class="btn btn-danger" href="admin/createalbum">Dodaj album</a>
+        <a class="btn btn-danger" href="admin/createsong">Dodaj pesmu</a>
+        <%}}%>
+        
+  <div class="accordion" id="accordionPanelsStayOpenExample">
+    <% if(data.data.length>0){ data.data.forEach(e=>{%>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-heading<%=e.id_albums%>">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="panelsStayOpen-collapse<%=e.id_albums%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=e.id_albums%>">
+          <%=e.album_name%>
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapse<%=e.id_albums%>" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading<%=e.id_albums%>">
+        <div class="accordion-body">
+          
+          <% if(e.songs.length>0){%>
+            <div class="row">
+              <%e.songs.forEach(e1=>{%>
+              <div class="col col-md-2 p-1">
+                <div class="card text-white bg-dark">
+                  <div class="card-body">
+                    <h5 class="card-title text-center"><%=e1.song_name %></h5>
+                    <iframe
+                      class="col-sm-12"
+                      width="560"
+                      height="315"
+                      src="<%=e1.yt_link %>"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+                    
+                  </div>
+                </div>
+              </div>
+        
+              <%})%>
+            </div>
+            <% }else{%>
+            <h2 class="text-danger text-center bg-dark p-5">Ne postoji ni jedna pesma sa albuma <%=e.album_name%></h2>
+            <%}%>
+
+
+        </div>
+      </div>
+    </div>
+    <%})} else{%>
+      <h2 class="text-danger text-center bg-dark p-5">Ne postoji ni jedan album</h2>
+      <%} %>
+
+  </div>
+
+</div>
+-->
+    
+<div class="container">
+  <%
+      if(data.user){
+      if(data.user.role=='admin'){%>
+        <a class="btn btn-danger" href="admin/createalbum">Dodaj album</a>
+        <a class="btn btn-danger" href="admin/createsong">Dodaj pesmu</a>
+        <%}}%>
+  <% if(data.data.length>0){ data.data.forEach(e=>{%>
+  <div class="row" style="border: 2px solid white; padding: 50px; margin-top: 60px; margin-bottom: 60px; background-color: rgba(184, 184, 184, 0.878);">
+    <h2>Ime albuma: <i class="text-danger"><%=e.album_name%></i></h2>
+    <% if(e.songs.length>0){%>
+    <div class="row">
+      <%e.songs.forEach(e1=>{%>
+      <div class="col col-md-3 p-1">
+        <div class="card text-white" style="background-color: rgba(112, 112, 112, 0.787);">
+          <div class="card-body">
+            <h5 class="card-title text-center">Pesma: <i><%=e1.song_name %></i></h5>
+            <iframe
+              class="col-sm-12"
+              width="560"
+              height="315"
+              src="<%=e1.yt_link %>"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <%})%>
+    </div>
+    <% }else{%>
+    <h4 class="text-dark text-center  p-5">Ne postoji nijedna pesma sa albuma: <%=e.album_name%></h4>
+    <%}%>
+  </div>
+  <%})} else{%>
+  <h4 class="text-dark text-center  p-5">Ne postoji nijedan album.</h4>
   <%} %>
 </div>

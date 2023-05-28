@@ -35,9 +35,9 @@
         </li>
       </ul>
     </div>
-
+    
     <div class="korpa_i_prijava">
-      <a class="nav-item text-white" href="/cart" style="color: #ffffff; padding-right: 30px; text-decoration: none;">
+      <a class="nav-item text-white" href="/concerts/usersCards" style="color: #ffffff; padding-right: 30px; text-decoration: none;">
         <div
           class="nav-item fa-solid fa-cart-shopping"
           style="color: #ffffff; text-decoration: none;"
@@ -46,12 +46,26 @@
         Korpa
       </a>
 
-      <a class="nav-item" href="/auth/login" style="color: #ffffff; padding-right: 30px; text-decoration: none;">
-        <div
-          class="fa-solid fa-user">
-      </div>
-      <%= data.user?data.user.username:'Prijava'%>
-      </a>
+      <%if(data.user){%>
+        <div class="dropdown nav-item">
+          <a href="/concerts/usersCards" class="dropdown-toggle" data-bs-toggle="dropdown" style="color: #ffffff; padding-right: 30px; text-decoration: none;">
+            <div class="fa-solid fa-user">
+            </div>
+            <%= data.user.username%>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/auth/logOutProccess">Odjavi se</a>
+          </div>
+        </div>
+      <%} else{%>
+        <a class="nav-item" href="/auth/login" style="color: #ffffff; padding-right: 30px; text-decoration: none;">
+          <div
+            class="fa-solid fa-user">
+        </div>
+        Prijava
+        </a> 
+      <%}%>
     </div>
-  </div>
+  </div>  
 </nav>
+

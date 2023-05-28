@@ -2,7 +2,7 @@ const adminService = require("../services/AdminService")
 const indexFile = require("../../index")
 exports.createConcert = (req,res)=>{
     var user = indexFile.getUser(req.cookies["session"])
-    res.render("",{layout:"layouts/admin",data:{"user":user}})
+    res.render("concert/addConcert",{layout:"layouts/main",data:{"user":user}})
 }
 
 exports.findAllConcerts = async (req,res) =>
@@ -14,14 +14,13 @@ exports.findAllConcerts = async (req,res) =>
 
 exports.createAlbum = async(req,res)=>{
     var user = indexFile.getUser(req.cookies["session"])
-    res.render("",{layout:"layouts/admin",user:user})
+    res.render("discography/addAlbum",{layout:"layouts/main",data:{user:user}})
 }
 
 exports.createSong = async(req,res)=>{
-    
     var user = indexFile.getUser(req.cookies["session"])
     var album = await adminService.findAllAlbum()
-    res.render("",{layout:"layouts/admin",data:{"data":album,"user":user}})
+    res.render("discography/addSong",{layout:"layouts/main",data:{"data":album,"user":user}})
 }
 
 
@@ -43,13 +42,13 @@ exports.createConcertProccess = async(req,res)=>{
                     "id_concert":newConcert.id_concert
                 })
             }
-            res.render("",{layout:"layouts/admin",data:"Uspesno unesen koncert"})
-        }).catch(function (error) { res.render("",{layout:"layouts/admin",msg:"Doslo je do greske"})});
+            res.redirect("/concerts");
+        }).catch(function (error) { res.render("",{layout:"layouts/main",msg:"Doslo je do greske"})});
 }
 exports.createAlbumProccess = async(req,res)=>{
-    adminService.createAlbum(req.body).then(()=>res.render("",{layout:"layouts/admin",data:"Uspesno unesen album"})).catch(err=>res.render("",{layout:"layouts/admin",data:err}))
+    adminService.createAlbum(req.body).then(()=>res.redirect("/discography")).catch(err=>res.render("",{layout:"layouts/main",data:err}))
 }
 
 exports.createSongProccess = async(req,res)=>{
-    adminService.createSong(req.body).then(()=>res.render("",{layout:"layouts/admin",data:"Uspesno unesena pesma"})).catch(err=>res.render("",{layout:"layouts/admin",data:err}))
+    adminService.createSong(req.body).then(()=>res.redirect("/discography")).catch(err=>res.render("",{layout:"layouts/main",data:err}))
 }
